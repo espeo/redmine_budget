@@ -8,7 +8,7 @@ class BudgetForm
     @params = params
 
     unless params.present?
-      @project_role_budgets = budget.project.project_role_budgets.includes(:role).merge(Role.sorted)
+      @project_role_budgets = budget.project.project_role_budgets.joins(:role).merge(Role.sorted)
       @income_wages = budget.income_wages
       @cost_wages = budget.cost_wages
     end
@@ -38,7 +38,7 @@ class BudgetForm
     existing_role_budget_ids = params['project_role_budgets'].map { |x| x['id'] }
 
     @project_role_budgets = params['project_role_budgets'].map do |row_params|
-      project_role_budget = budget.project.project_role_budgets.new do |x| 
+      project_role_budget = budget.project.project_role_budgets.new do |x|
         x.id = (row_params['id'] if row_params['id'].to_i > 0) || next_project_role_budget_uid
       end
 
@@ -53,7 +53,7 @@ class BudgetForm
     existing_wage_ids = params['wages'].map { |x| x['id'] }
 
     wages = params['wages'].map do |row_params|
-      wage = budget.project.wages.new do |x| 
+      wage = budget.project.wages.new do |x|
         x.id = (row_params['id'] if row_params['id'].to_i > 0) || next_wage_uid
       end
 
