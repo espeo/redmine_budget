@@ -11,6 +11,6 @@ resources :projects do
 end
 
 get 'projects/:project_id/budget/worktime' => 'worktime#show', as: :project_worktime
-put 'projects/:project_id/budget/worktime' => 'worktime#update', as: :project_worktime
+put 'projects/:project_id/budget/worktime' => 'worktime#update'
 post 'projects/:project_id/budget/worktime/holidays' => 'worktime#create_holiday', as: :project_holidays
 delete 'projects/:project_id/budget/worktime/holidays/:id' => 'worktime#destroy_holiday', as: :project_holiday
