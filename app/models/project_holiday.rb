@@ -8,5 +8,5 @@ class ProjectHoliday < ActiveRecord::Base
 
   safe_attributes "project_id", "date"
 
-  default_scope :order => "project_holidays.date ASC"
+  default_scope -> { order("project_holidays.date ASC") }
 end

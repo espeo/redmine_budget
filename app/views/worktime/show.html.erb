@@ -5,7 +5,7 @@
 
 <% can_update = User.current.allowed_to?({:controller => 'worktime', :action => 'update'}, @project) %>
 
-<%= labelled_form_for @budget, :url => project_worktime_path(@project) do |f| %>
+<%= labelled_form_for @budget, :url => update_project_worktime_path(@project) do |f| %>
   <fieldset class="box">
     <legend><h3><%= t(:general_settings, scope: :worktime) %></h3></legend>
     <p>
