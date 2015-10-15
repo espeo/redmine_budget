@@ -8,7 +8,7 @@ class BudgetForm
     @params = params
 
     unless params.present?
-      @project_role_budgets = budget.project.project_role_budgets.includes(:role).merge(Role.sorted)
+      @project_role_budgets = budget.project.project_role_budgets.joins(:role).merge(Role.sorted)
       @income_wages = budget.income_wages
       @cost_wages = budget.cost_wages
     end
